@@ -1,0 +1,512 @@
+\documentclass[psamsfonts, 12pt]{amsart}
+%
+%-------Packages---------
+%
+\usepackage[h margin=1 in, v margin=1 in]{geometry}
+\usepackage{amssymb,amsfonts}
+\usepackage[all,arc]{xy}
+\usepackage{tikz-cd}
+\usepackage{enumerate}
+\usepackage{mathrsfs}
+\usepackage{amsthm}
+\usepackage{mathpazo}
+\usepackage{float}
+\usepackage[backend=biber]{biblatex}
+\addbibresource{bibliography.bib}
+%\usepackage{charter} %another font
+%\usepackage{eulervm} %Vakil font
+\usepackage{yfonts}
+\usepackage{mathtools}
+\usepackage{enumitem}
+\usepackage{mathrsfs}
+\usepackage{fourier-orns}
+\usepackage[all]{xy}
+\usepackage{hyperref}
+\usepackage{url}
+\usepackage{mathtools}
+\usepackage{graphicx}
+\usepackage{pdfsync}
+\usepackage{mathdots}
+\usepackage{calligra}
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+\usepackage{transparent}
+
+\newcommand{\incfig}[2]{%
+    \fontsize{48pt}{50pt}\selectfont
+    \def\svgwidth{\columnwidth}
+    \scalebox{#2}{\input{#1.pdf_tex}}
+}
+%
+\usepackage{tgpagella}
+\usepackage[T1]{fontenc}
+%
+\usepackage{listings}
+\usepackage{color}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{frame=tb,
+  language=Matlab,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3
+  }
+%
+%--------Theorem Environments--------
+%
+\newtheorem{thm}{Theorem}[section]
+\newtheorem*{thm*}{Theorem}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem*{lem*}{Lemma}
+\newtheorem{conj}[thm]{Conjecture}
+\newtheorem{quest}[thm]{Question}
+%
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{Definition}
+\newtheorem*{defn*}{Definition}
+\newtheorem{defns}[thm]{Definitions}
+\newtheorem{con}[thm]{Construction}
+\newtheorem{exmp}[thm]{Example}
+\newtheorem{exmps}[thm]{Examples}
+\newtheorem{notn}[thm]{Notation}
+\newtheorem{notns}[thm]{Notations}
+\newtheorem{addm}[thm]{Addendum}
+\newtheorem{exer}[thm]{Exercise}
+%
+\theoremstyle{remark}
+\newtheorem{rem}[thm]{Remark}
+\newtheorem*{claim}{Claim}
+\newtheorem*{aside*}{Aside}
+\newtheorem*{rem*}{Remark}
+\newtheorem*{hint*}{Hint}
+\newtheorem*{note}{Note}
+\newtheorem{rems}[thm]{Remarks}
+\newtheorem{warn}[thm]{Warning}
+\newtheorem{sch}[thm]{Scholium}
+%
+%--------Macros--------
+\renewcommand{\qedsymbol}{$\blacksquare$}
+\renewcommand{\sl}{\mathfrak{sl}}
+\newcommand{\Bord}{\mathsf{Bord}}
+\renewcommand{\hom}{\mathsf{Hom}}
+\renewcommand{\emptyset}{\varnothing}
+\renewcommand{\O}{\mathscr{O}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\ib}[1]{\textbf{\textit{#1}}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\A}{\mathbb{A}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\M}{\mathcal{M}}
+\newcommand{\dbar}{\overline{\partial}}
+\newcommand{\zbar}{\overline{z}}
+\renewcommand{\S}{\mathbb{S}}
+\newcommand{\V}{\vec{v}}
+\newcommand{\RP}{\mathbb{RP}}
+\newcommand{\CP}{\mathbb{CP}}
+\newcommand{\B}{\mathcal{B}}
+\newcommand{\GL}{\mathsf{GL}}
+\newcommand{\SL}{\mathsf{SL}}
+\newcommand{\SP}{\mathsf{SP}}
+\newcommand{\SO}{\mathsf{SO}}
+\newcommand{\SU}{\mathsf{SU}}
+\newcommand{\gl}{\mathfrak{gl}}
+\newcommand{\g}{\mathfrak{g}}
+\newcommand{\Bun}{\mathsf{Bun}}
+\newcommand{\inv}{^{-1}}
+\newcommand{\bra}[2]{ \left[ #1, #2 \right] }
+\newcommand{\set}[1]{\left\lbrace #1 \right\rbrace}
+\newcommand{\abs}[1]{\left\lvert#1\right\rvert}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\transv}{\mathrel{\text{\tpitchfork}}}
+\newcommand{\defeq}{\vcentcolon=}
+\newcommand{\enumbreak}{\ \\ \vspace{-\baselineskip}}
+\let\oldexists\exists
+\renewcommand\exists{\oldexists~}
+\let\oldL\L
+\renewcommand\L{\mathfrak{L}}
+\makeatletter
+\newcommand{\tpitchfork}{%
+  \vbox{
+    \baselineskip\z@skip
+    \lineskip-.52ex
+    \lineskiplimit\maxdimen
+    \m@th
+    \ialign{##\crcr\hidewidth\smash{$-$}\hidewidth\crcr$\pitchfork$\crcr}
+  }%
+}
+\makeatother
+\newcommand{\bd}{\partial}
+\newcommand{\lang}{\begin{picture}(5,7)
+\put(1.1,2.5){\rotatebox{45}{\line(1,0){6.0}}}
+\put(1.1,2.5){\rotatebox{315}{\line(1,0){6.0}}}
+\end{picture}}
+\newcommand{\rang}{\begin{picture}(5,7)
+\put(.1,2.5){\rotatebox{135}{\line(1,0){6.0}}}
+\put(.1,2.5){\rotatebox{225}{\line(1,0){6.0}}}
+\end{picture}}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\im}{Im}
+\DeclareMathOperator{\codim}{codim}
+\DeclareMathOperator{\coker}{coker}
+\DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\inter}{Int}
+\DeclareMathOperator{\sign}{sign}
+\DeclareMathOperator{\sgn}{sgn}
+\DeclareMathOperator{\indx}{ind}
+\DeclareMathOperator{\alt}{Alt}
+\DeclareMathOperator{\Aut}{Aut}
+\DeclareMathOperator{\trace}{trace}
+\DeclareMathOperator{\ad}{ad}
+\DeclareMathOperator{\End}{End}
+\DeclareMathOperator{\Ad}{Ad}
+\DeclareMathOperator{\Lie}{Lie}
+\DeclareMathOperator{\spn}{span}
+\DeclareMathOperator{\dv}{div}
+\DeclareMathOperator{\grad}{grad}
+\DeclareMathOperator{\Sym}{Sym}
+\DeclareMathOperator{\sheafhom}{\mathscr{H}\text{\kern -3pt {\calligra\large om}}\,}
+\newcommand*\myhrulefill{%
+   \leavevmode\leaders\hrule depth-2pt height 2.4pt\hfill\kern0pt}
+\newcommand\niceending[1]{%
+  \begin{center}%
+    \LARGE \myhrulefill \hspace{0.2cm} #1 \hspace{0.2cm} \myhrulefill%
+  \end{center}}
+\newcommand*\sectionend{\niceending{\decofourleft\decofourright}}
+\newcommand*\subsectionend{\niceending{\decosix}}
+\def\upint{\mathchoice%
+    {\mkern13mu\overline{\vphantom{\intop}\mkern7mu}\mkern-20mu}%
+    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
+    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
+    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
+  \int}
+\def\lowint{\mkern3mu\underline{\vphantom{\intop}\mkern7mu}\mkern-10mu\int}
+%
+%--------Hypersetup--------
+%
+\hypersetup{
+    colorlinks,
+    citecolor=black,
+    filecolor=black,
+    linkcolor=blue,
+    urlcolor=blacksquare
+}
+%
+%--------Solution--------
+%
+\newenvironment{solution}
+  {\begin{proof}[Solution]}
+  {\end{proof}}
+%
+%--------Graphics--------
+%
+%\graphicspath{ {images/} }
+
+\begin{document}
+%
+\author{Kurtis David}
+%
+\title{Lecture 1: EE 381K - Convex Optimization}
+%
+\maketitle
+%
+
+\section{Class Policy Extras}
+
+\underline{Linear Programming Books}:
+
+\begin{enumerate}
+    \item Bertsimas, Tsitsiklis "Introduction to Linear Optimization"
+    \item R.J. Vanderbli "Linear Programming Foundation and Extension"
+\end{enumerate}
+
+\underline{Convex Optimization Books}:
+
+\begin{enumerate}
+    \item Ben Tal \& Nemirovski "Lectures on Modern Convex Opt
+    \item Bertsekas, Nedic, Oz
+\end{enumerate}
+
+\section{Minimization}
+
+General Formulation:
+
+\begin{align*}
+    &\text{minimize }f_0(x) \\
+    &\text{subject to } f_i(x) \leq b_i(x)\ i = 1,...,m \\
+    &f_0: \R^n \rightarrow \R \Rightarrow \text{Objective function} \\
+    &f_i: \R^n \rightarrow \R\ i=1,...,m \Rightarrow  \text{Constraint function} \\
+    &x \in \R^n \Rightarrow \text{ optimization/decision variable} \\
+    &\hat{x}  \text{ feasible if } f_i(\hat{x}) \leq b_i(\hat{x})\\
+    &x^*: \text{ optimal solution}\\
+    &f_0(x^*) \leq f_0(\hat{x}) \forall \text{ feasible } \hat{x}
+\end{align*}
+
+\section{Linear Programming}
+
+\begin{defn}
+
+\underline{Linear programs} are one type of convex optimization problems, and they consist of:
+\begin{itemize}
+    \item Objective function $f_0$
+    \item All the constraints $f_1,...,f_m$
+\end{itemize}
+
+If these are all linear functions, then it is a linear program.
+
+\end{defn}
+
+\[
+    \min_{x_1,...,x_n} \sum_{j=1}^nc_jx_j\ |\ c_j \text{ cost of } x_j
+\]
+\[
+    s.t. \sum_{j=1}^na_{ij}x_j \leq b_i \text{ for } i = 1,...,m \Rightarrow m \text{ Inequality constraints}
+\]
+\[
+    \sum_{j=1}^nd_{ij}x_j = e_i \text{ for } i = 1,...,P \Rightarrow P \text{ Equality constraints}
+\]
+
+\underline{Example: Resource Allocation}
+
+\textbf{Parameters} i.e. given variables
+
+\begin{itemize}
+    \item $n$: Number of activities $j=1,...,n$
+    \item $m$: Number of Resources $i=1,...,m$
+    \item $P_j$: Profit of activity $j$
+    \item $b_i$: Amount of available resource $i$
+    \item $a_{ij}$: amount of resource $i$ used by activity $j$
+\end{itemize}
+
+\textbf{Variables}
+\begin{itemize}
+    \item $x_j$ amount of activity $j$ selected for resource $i$
+\end{itemize}
+
+\textbf{Goal}
+
+\begin{center}
+ $\max \sum_{j=1}^nP_jx_j$
+ 
+ s.t. $\sum_{j=1}^na_{ij}x_j \leq b_i$ for $i=1,...m$
+ 
+ 
+ s.t. $x_j \geq 0$ for $j=1,...,m$
+\end{center}
+
+\underline{Example: Matching Problem}
+
+We have $N$ people and $N$ tasks.
+
+People indexed by $i=1,...N$
+
+Tasks indexed by $j=1,...,N$
+
+$a_{ij}$ cost of assigning task $j$ to person $i$
+
+\[ x_{ij} = \begin{cases} 
+      1 & \text{Assign task } j \text{ to person } i \\
+      0 & \text{otherwise}
+   \end{cases}
+\]
+
+\textbf{Goal}
+\begin{center}
+    minimize $\sum_{i=1}^N\sum_{j=1}^Na_{ij}x_{ij}$
+    
+    s.t. $\sum_{i=1}^Nx_{ij}=1$ $j=1,...,N$ 
+    
+    s.t. $\sum_{j=1}^Nx_{ij}=1$ $i=1,...,N$ 
+    
+    AND $x_{ij} \in \{0,1\}$
+\end{center}
+
+\textbf{Problem:} Feasible set is only $\{0,1\}$. 
+
+Thus we should \textbf{relax} constraints such that $0 \leq x_{ij} \leq 1$. We will come back to this later.
+
+
+\section{Vectorization}
+
+
+Now let's vectorize these formulations.
+
+\[
+    c = \begin{bmatrix}
+        c_1 \\
+        \vdots \\
+        c_n
+    \end{bmatrix} \in \R^n\quad x = \begin{bmatrix}
+        x_1 \\
+        \vdots \\
+        x_n
+    \end{bmatrix} \in \R^n
+\]
+\[
+    a_i = \begin{bmatrix}
+        a_{i1} \\
+        \vdots \\
+        a_{in}
+    \end{bmatrix} i = 1,..,m \quad d_i = \begin{bmatrix}
+        d_{i1} \\
+        \vdots \\
+        d_{in}
+    \end{bmatrix} i = 1,..,P
+\]
+
+\begin{center}
+    minimize $c^Tx$
+    
+    s.t. $a_i^Tx \leq b_i\ i=1,...,m$
+    
+         $d_i^Tn = e_i\ i=1,...,P$
+\end{center}
+
+Now let 
+
+\[
+    A = \begin{bmatrix}
+        a_{11} & a_{12} & ... & a_{1n}\\
+        \vdots & \vdots & ... & \vdots\\
+        a_{m1} & a_{m2} & ... & a_{mn}\\
+    \end{bmatrix} \in \R^{mn} \quad D = \begin{bmatrix}
+        d_{11} & d_{12} & ... & d_{1n}\\
+        \vdots & \vdots & ... & \vdots\\
+        d_{P1} & d_{P2} & ... & d_{Pn}\\
+    \end{bmatrix} \in \R^{Pn}
+\]
+
+Now we can rewrite the constraints to be:
+
+\begin{center}
+    $Ax \leq b$
+    
+    $Dx = e$ 
+\end{center}
+
+\begin{rem}
+Whenever using $\leq$ with vectors, this implies all elements in one vector are $\leq$ than their respective element (same idx) in the other vector.
+\end{rem}
+
+\section{Shit ton of Definitions}
+
+\begin{defn}
+$x$ is \underline{feasible} if it satisfies $Ax\leq b$ \& $Dx = e$
+\end{defn}
+
+\begin{defn}
+\underline{feasible set} $S = \{ x\in\R^n |Ax\leq b$ \& $Dx = e \}$
+\end{defn}
+
+\begin{defn}
+$x^*$ is \underline{optimal} if $c^Tx^* \leq c^Tx$ for any $x\in S$
+\end{defn}
+
+\begin{defn}
+\underline{optimal value} $p^* = c^Tx^*$
+\end{defn}
+
+\begin{defn}
+\underline{Unbounded LP} $p^* = c^Tx^*$
+\end{defn}
+
+\begin{defn}
+\underline{Hyperplane}: Solution set of one linear equation with nonzero coeff. vector $a$ ($a_i\neq 0$) s.t. $a^Tx = b$
+\end{defn}
+
+\begin{defn}
+\underline{Half Space}: Solution set of one linear inequality with nonzero coefficients. i.e. $a^Tx \leq b$.
+\end{defn}
+
+\begin{defn}
+\underline{Subspace} Intersection of a set of hyperplanes. Or a solution to a system of equality equations.
+\end{defn}
+
+\begin{defn}
+\underline{Polyhedron} Intersection of a set of half-spaces. Or a solution to a finite number of linear inequalities.
+\end{defn}
+
+\begin{defn}
+\underline{Function set} Set of points where some $f$ has value $\alpha$. i.e. $f(x) = \alpha$. e.g. hyperplanes
+\end{defn}
+
+\section{Polyhedrons}
+
+\[
+    P = \{ x | Ax\leq B, Cx = d\}
+\]
+
+\begin{defn}
+    \underline{Lineality space}: The lineality space of $P$ is defined as 
+    
+    \[
+        L = \text{nullspace}( \begin{bmatrix}
+        A \in \R^{mn}\\
+        C \in \R^{Pn}
+        \end{bmatrix}
+    \]
+\end{defn}
+
+\begin{claim}
+Let $x\in P$, $v\in L$. Then $x + v \in L$.
+\end{claim}
+
+\begin{proof}
+Trivial. $x$ in the solution space, and $Av = 0 = Cv$
+\end{proof}
+
+\begin{defn}
+\underline{Pointed polyhderon} A polyhderon $P$ with Lineality space $ L = \{0\}$. i.e. the null space of both $A$ and $C$ is trivial.
+\end{defn}
+
+$\Rightarrow$ A polyhderon is pointed if it doesn't contain a \textit{line}.
+
+\underline{Example 1}
+
+a half space $\{ x  a^T x \leq b \}$.
+
+Only when $x\in\R$ is this a pointed polyhedron.
+
+\underline{Example 2}
+
+a half space $\{ x  -1 \leq a^T x \leq 1\}$.
+
+Only when $x\in\R$ is this a pointed polyhedron.
+
+\underline{Example 3}
+
+a half space $\{ x  |x|\leq 1 |y| \leq 1\}$.
+
+$S = \{(0,0,z) | z\in\R\}$
+
+therefore always not pointed.
+
+\underline{Example 4}
+
+$\{ x | 1^Tx = 1, x\geq 0\}$.
+
+YEET it is pointed
+
+
+
+
+
+\end{document}

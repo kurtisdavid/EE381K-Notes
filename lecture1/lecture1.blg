@@ -1,0 +1,9 @@
+[0] Config.pm:324> INFO - This is Biber 2.1
+[0] Config.pm:327> INFO - Logfile is 'lecture1.blg'
+[80] biber-darwin:276> INFO - === Wed Aug 28, 2019, 10:21:24
+[80] Biber.pm:333> INFO - Reading 'lecture1.bcf'
+[238] Biber.pm:645> INFO - Found 0 citekeys in bib section 0
+[238] Utils.pm:146> WARN - The file 'lecture1.bcf' does not contain any citations!
+[262] bbl.pm:505> INFO - Writing 'lecture1.bbl' with encoding 'ascii'
+[262] bbl.pm:596> INFO - Output to lecture1.bbl
+[262] Biber.pm:106> INFO - WARNINGS: 1
